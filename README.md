@@ -1,31 +1,23 @@
-# MVP Match Reporting App
+# Report App HeyCar
 
-This application has the following prerequisites:
+This project was developed with Typescript, NextJs and React
 
-- [Node.js](https://nodejs.org/en/download/) `v18.1.0` or compatible
-- [Git](https://git-scm.com/downloads) `v2.36.1` or compatible
 
-Please make sure you have all the above installed and working correctly then clone the repository to a local folder. Open a terminal, enter that folder and execute:
+Before running you should:
 
 ```bash
-npm i --force
-# The chart library is not officially compatible with React v18 yet
+npm install
+# or
+yarn add/install
 ```
 
-Once the installation completed successfully continue with:
+To run locally:
 
 ```bash
 npm run dev
-# or
-npm run build & npm run start
 ```
 
-The sourcecode is best viewed through the [VSCode IDE](https://code.visualstudio.com/).
-
-## Additional Commands
-
-You can run the unit tests using:
-
-```bash
-npm run test
-```
+To be improved:
+- CSS: mostly on the Dashboard when the Chart is displayed
+- Unit testing: there is a lot of code to be covered by jest, but this will require more time
+- Refactor some utils: there were some functions that could be optimized, and also be separated from the main components, in a `hooks` file for instance
