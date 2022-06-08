@@ -20,4 +20,5 @@ npm run dev
 To be improved:
 - CSS: mostly on the Dashboard when the Chart is displayed
 - Unit testing: there is a lot of code to be covered by jest, but this will require more time
+- Integrated testing: there could also be an integrated test, using cypress
 - Refactor some utils: there were some functions that could be optimized, and also be separated from the main components, in a `hooks` file for instance
