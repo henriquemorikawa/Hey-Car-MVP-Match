@@ -15,6 +15,8 @@ import {
   ReportListContainer,
   Table,
   TableData,
+  TableDataAmount,
+  TableDataId,
   Title,
   Total,
 } from './ReportList.styles'
@@ -81,17 +83,13 @@ export default function ReportList() {
     return newFormattedDate.replace(pattern, '$3/$2/$1')
   }
 
-  const getFirstDate = (id, referenceId?) => {
-    const newFormattedDate = displayReports.find(
-      report => report.gatewayId === id && report.projectId === referenceId
-    )?.created
-
+  const formatDate = (date: any) => {
     const pattern = /(\d{4})\-(\d{2})\-(\d{2})/
 
-    if (!newFormattedDate || !newFormattedDate.match(pattern)) {
+    if (!date || !date.match(pattern)) {
       return null
     }
-    return newFormattedDate.replace(pattern, '$3/$2/$1')
+    return date.replace(pattern, '$3/$2/$1')
   }
 
   const getChartData = (dictionary, key) => {
@@ -122,7 +120,10 @@ export default function ReportList() {
         <NoReportComponent></NoReportComponent>
       ) : (
         <>
-          <ReportListContainer>
+          <ReportListContainer
+            projectFilter={displayInfo?.projectName}
+            gatewayFilter={displayInfo?.gatewayName}
+          >
             {displayInfo?.projectName === 'All projects' &&
             displayInfo?.gatewayName === 'All gateways' ? (
               <>
@@ -153,19 +154,21 @@ export default function ReportList() {
                               <th>Amount</th>
                             </tr>
                           </tbody>
-                          {gatewayDictionary.map(gateway => {
+                          {displayReports.map(transaction => {
                             return (
-                              <tbody key={gateway.name}>
+                              <tbody key={transaction.name}>
                                 <tr>
                                   <TableData>
-                                    {getFirstDate(gateway.id, project.id)}
+                                    {formatDate(transaction.created)}
                                   </TableData>
-                                  <TableData>{gateway.name}</TableData>
-                                  <TableData>{gateway.id}</TableData>
-                                  <TableData>{`${amountByProject(
-                                    gateway.id,
+                                  <TableData>{transaction.gatewayId}</TableData>
+                                  <TableDataId>
+                                    {transaction.paymentId}
+                                  </TableDataId>
+                                  <TableDataAmount>{`${amountByProject(
+                                    transaction.gatewayId,
                                     project.id
-                                  )} USD`}</TableData>
+                                  )} USD`}</TableDataAmount>
                                 </tr>
                               </tbody>
                             )
@@ -189,17 +192,15 @@ export default function ReportList() {
                       <th>Amount</th>
                     </tr>
                   </tbody>
-                  {displayReports.slice(0, 3).map(report => {
+                  {displayReports.map(report => {
                     return (
                       <tbody key={report.paymentId}>
                         <tr>
-                          <TableData>
-                            {getFirstDate(report.gatewayId, report.projectId)}
-                          </TableData>
+                          <TableData>{formatDate(report.created)}</TableData>
                           <TableData>{report.gatewayId}</TableData>
-                          <TableData>{`${amountByPayment(
+                          <TableDataAmount>{`${amountByPayment(
                             report.paymentId
-                          )} USD`}</TableData>
+                          )} USD`}</TableDataAmount>
                         </tr>
                       </tbody>
                     )

@@ -1,10 +1,17 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const ReportListContainer = styled.div`
-  background-color: #f1fafe;
+  /* background-color: #f1fafe; */
   padding: 18px 27px 17px 19px;
   border-radius: 10px;
   max-width: 1240px;
+
+  ${({ projectFilter, gatewayFilter }) =>
+    ((projectFilter === 'All projects' && gatewayFilter === 'All gateways') ||
+      (projectFilter !== 'All projects' && gatewayFilter !== 'All gateways')) &&
+    css`
+      background-color: #f1fafe;
+    `}
 `
 
 export const Title = styled.h3`
@@ -64,7 +71,7 @@ export const TableWithChart = styled.table`
   & > tbody > tr {
     width: 654px;
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     padding-left: 24px;
     padding-right: 12px;
     height: 35px;
@@ -80,6 +87,17 @@ export const TableWithChart = styled.table`
 
 export const TableData = styled.td`
   font-size: 14px;
+`
+
+export const TableDataId = styled.td`
+  font-size: 14px;
+  width: 200px;
+  text-align: center;
+`
+export const TableDataAmount = styled.td`
+  width: 80px;
+  font-size: 14px;
+  text-align: right;
 `
 
 export const Total = styled.div`

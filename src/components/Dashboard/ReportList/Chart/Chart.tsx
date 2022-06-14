@@ -12,6 +12,7 @@ import {
   Heading,
   HeadingText,
   TableData,
+  TableDataAmount,
   TableWithChart,
   TableWrapper,
   Title,
@@ -82,18 +83,15 @@ export default function ChartComponent({
                       </tbody>
                       {displayReports
                         .filter(report => report.projectId === project.id)
-                        .slice(0, 3)
                         .map(report => {
                           return (
                             <tbody key={report.paymentId}>
                               <tr>
-                                <TableData>
-                                  {getFirstDateByKey(report.projectId)}
-                                </TableData>
+                                <TableData>{report.created}</TableData>
                                 <TableData>{project.id}</TableData>
-                                <TableData>{`${amountByPayment(
+                                <TableDataAmount>{`${amountByPayment(
                                   report.paymentId
-                                )} USD`}</TableData>
+                                )} USD`}</TableDataAmount>
                               </tr>
                             </tbody>
                           )
@@ -175,18 +173,15 @@ export default function ChartComponent({
                       </tbody>
                       {displayReports
                         .filter(report => report.gatewayId === gateway.id)
-                        .slice(0, 3)
                         .map(report => {
                           return (
                             <tbody key={report.paymentId}>
                               <tr>
-                                <TableData>
-                                  {getFirstDateByKey(report.gatewayId)}
-                                </TableData>
+                                <TableData>{report.created}</TableData>
                                 <TableData>{gateway.id}</TableData>
-                                <TableData>{`${amountByPayment(
+                                <TableDataAmount>{`${amountByPayment(
                                   report.paymentId
-                                )} USD`}</TableData>
+                                )} USD`}</TableDataAmount>
                               </tr>
                             </tbody>
                           )

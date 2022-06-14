@@ -29,7 +29,6 @@ export const ContentWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  height: 557px;
 `
 
 export const TableWrapper = styled.div`
@@ -39,6 +38,12 @@ export const TableWrapper = styled.div`
 
 export const TableData = styled.td`
   font-size: 14px;
+`
+
+export const TableDataAmount = styled.td`
+  width: 80px;
+  font-size: 14px;
+  text-align: right;
 `
 
 export const TableWithChart = styled.table`
